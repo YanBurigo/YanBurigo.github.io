@@ -8,12 +8,20 @@
             font: bolder; 
             font-style: italic; 
             font-size: 50px; 
-            margin-left: 200px; 
-            margin-top: 0px; 
-            margin-bottom: 0px;
+            margin-left: 180px; 
+            margin-top: -15px; 
+            margin-bottom: -5px;
+        }
+        p{
+            margin-bottom: 5px;
+            margin-top: 5px;
+            margin-right: 60px;
+        }
+        h2{
+            margin: 2px;
         }
     </style>
-    <body>
+    <body id="body">
         <h1 class="titulo">Vilson Kart</h1>
         <audio id="music" src="Tokyo Drift.mp3"></audio>
         <audio id="drift" src="drift.mp3"></audio>
@@ -24,6 +32,23 @@
             }
         </style>
         <canvas id="tela" width="640" height="480"></canvas>
+        <h2 class="text">Controles:</h2>
+        <div style="float: left;">
+            <p class="text">Andar para frente: ↑</p>
+            <p class="text">Virar para esquerda: ←</p>
+            <p class="text">Virar para direita: →</p>
+            <p class="text">Andar de ré: ↓</p>
+        </div>
+        <div style="float: left;">
+            <p class="text">Buzinar: E</p>
+            <p class="text">Faról: L</p>
+            <p class="text">Mutar música: M</p>
+            <p class="text">Freio de mão: Espaço</p>
+        </div>
+        <div>
+            <p class="text">Respawn: R</p>
+            <p class="text">Trocar tema: T</p>
+        </div>
         <script src="script.js"></script>
     </body>
 </html>
