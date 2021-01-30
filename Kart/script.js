@@ -8,7 +8,9 @@ var drift = 0;
 var leftDrift = 0;
 var rightDrift = 0;
 var luz = 0;
-var blue = "255";
+var blue = "130";
+var red = "130";
+var green = "130";
 var horn = 0;
 var sound = 0;
 
@@ -118,10 +120,21 @@ function desenhar() {
     ctx.fillRect(160, 50, 10, 100);
     ctx.fillRect(70, 50, 10, 100);
 
+    //Lago
     ctx.fillStyle = "rgb(0, 162, 232)";
     ctx.beginPath();
-    ctx.ellipse(430, 300, 50, 75, Math.PI/2, 0, 2 * Math.PI);
-    ctx.ellipse(450, 240, 45, 80, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(410, 290, 50, 70, Math.PI/2, 0, 2 * Math.PI);
+    ctx.ellipse(450, 240, 60, 80, Math.PI, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(470, 160, 40, 50, 1.2+Math.PI, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(250, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(270, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(290, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(310, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(350, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
     ctx.fill();
 
     //carro
@@ -160,10 +173,10 @@ function desenhar() {
 
     //farol
 
-    ctx.fillStyle = "rgb(255, 255," + blue + ") ";
+    ctx.fillStyle = "rgb("+red+","+green+"," + blue + ") ";
     ctx.fillRect(60, 8, 6, 7);
 
-    ctx.fillStyle = "rgb(255, 255," + blue + ") ";
+    ctx.fillStyle = "rgb("+red+","+green+"," + blue + ") ";
     ctx.fillRect(60, 30, 6, 7);
 
     //Aerofólio
@@ -209,9 +222,13 @@ document.onkeydown = function (evt) {
             if (luz == 0) {
                 luz = 1;
                 blue = "0";
+                red = "255";
+                green = "211";
             } else {
                 luz = 0;
-                blue = "255"; 
+                blue = "130";
+                red = "130";
+                green = "130";
             }
             break;
         case 69: //E
@@ -355,6 +372,8 @@ document.onkeyup = function (evt) {
         movementDrift = 0;
     }
     if (evt.keyCode == 69){
+        audio3.pause();
+        audio3.currentTime = 0;
         horn = 0;
     }
 };
