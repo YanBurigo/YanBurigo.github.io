@@ -5,15 +5,45 @@ var ctx = canvas.getContext("2d");
 var x = 200, y = 100, larg = 10, alt = 10;
 var ang = 0;
 var drift = 0;
+var leftDrift = 0;
+var rightDrift = 0;
 var luz = 0;
-var blue = "255";
+var blue = "130";
+var red = "130";
+var green = "130";
 var horn = 0;
+var sound = 0;
+
+if(localStorage.getItem("theme") == null){
+    localStorage.setItem("theme", "light")
+}
+else if(localStorage.getItem("theme") == "dark"){
+    document.getElementById("body").style.backgroundColor = "rgb(0,0,0)";
+    for(var i=0; i<11; i++){
+        document.getElementsByClassName("text")[i].style.color = "rgb(255,255,255)"
+    }
+}
+else if(localStorage.getItem("theme") == "light"){
+    document.getElementById("body").style.backgroundColor = "rgb(255,255,255)";
+    for(var i=0; i<11; i++){
+        document.getElementsByClassName("text")[i].style.color = "rgb(0,0,0)"
+    }
+}
+if(localStorage.getItem("music") == null){
+    localStorage.setItem("music", "on")
+}
+else if (localStorage.getItem("music") == "off"){
+    sound = 1;
+}
+else if (localStorage.getItem("music") == "on"){
+    sound = 0;
+}
+
 
 const audio = document.querySelector('audio');
 const audio2 = document.querySelector('#drift');
 const audio3 = document.querySelector('#horn');
 
-audio.volume = 0.25;
 audio2.volume = 0.25;
 audio3.volume = 0.25;
 
@@ -90,10 +120,21 @@ function desenhar() {
     ctx.fillRect(160, 50, 10, 100);
     ctx.fillRect(70, 50, 10, 100);
 
+    //Lago
     ctx.fillStyle = "rgb(0, 162, 232)";
     ctx.beginPath();
-    ctx.ellipse(430, 300, 50, 75, Math.PI/2, 0, 2 * Math.PI);
-    ctx.ellipse(450, 240, 45, 80, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(410, 290, 50, 70, Math.PI/2, 0, 2 * Math.PI);
+    ctx.ellipse(450, 240, 60, 80, Math.PI, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(470, 160, 40, 50, 1.2+Math.PI, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(250, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(270, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(290, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(310, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
+    ctx.ellipse(350, 320, 85, 30, Math.PI, 0, 2 * Math.PI);
     ctx.fill();
 
     //carro
@@ -103,7 +144,7 @@ function desenhar() {
     ctx.lineWidth = 2;
     ctx.save(); //Faz um backup do CTX
     ctx.translate(x - 40, y + 100);
-    ctx.rotate(drift + (ang / Math.PI));
+    ctx.rotate((rightDrift + leftDrift ) + (ang / Math.PI));
     ctx.beginPath();
 
     ctx.stroke();
@@ -132,10 +173,10 @@ function desenhar() {
 
     //farol
 
-    ctx.fillStyle = "rgb(255, 255," + blue + ") ";
+    ctx.fillStyle = "rgb("+red+","+green+"," + blue + ") ";
     ctx.fillRect(60, 8, 6, 7);
 
-    ctx.fillStyle = "rgb(255, 255," + blue + ") ";
+    ctx.fillStyle = "rgb("+red+","+green+"," + blue + ") ";
     ctx.fillRect(60, 30, 6, 7);
 
     //Aerofólio
@@ -154,15 +195,12 @@ function desenhar() {
 }
 requestAnimationFrame(desenhar);
 
-
 var movement = 0;
 var turnLeft = 0;
 var turnRight = 0;
-var movementDrift = 0
+var movementDrift = 0;
 
-document.onkeydown = function (evt) {
-    audio.play();
-
+document.onkeydown = function (evt) { 
     switch (evt.keyCode) {
         case 39: //direita
             turnRight = 39;
@@ -180,67 +218,137 @@ document.onkeydown = function (evt) {
             movementDrift = 32;
             audio2.play();
             break;
-        case 76:
+        case 76: //L
             if (luz == 0) {
                 luz = 1;
                 blue = "0";
+                red = "255";
+                green = "211";
             } else {
                 luz = 0;
-                blue = "255"; 
+                blue = "130";
+                red = "130";
+                green = "130";
             }
             break;
-        case 69:
+        case 69: //E
             horn = 69;
+            break;
+        case 77: //M
+            if(sound == 0){
+                sound = 1;
+                break;
+            }
+            else if (sound == 1){
+                sound = 0;
+            }
+            break;
+        case 84: //T
+            theme();
+            break;
+        case 82: //R
+            x = 200
+            y = 100
+            ang = 0
             break;
     }
 };
 
+function theme(){
+    if(localStorage.getItem("theme") == "light"){
+        document.getElementById("body").style.backgroundColor = "rgb(0,0,0)";
+        for(var i=0; i<11; i++){
+            document.getElementsByClassName("text")[i].style.color = "rgb(255,255,255)"
+        }
+        localStorage.setItem("theme", "dark");
+    }
+    else if(localStorage.getItem("theme") == "dark"){
+        document.getElementById("body").style.backgroundColor = "rgb(255,255,255)";
+        for(var i=0; i<11; i++){
+            document.getElementsByClassName("text")[i].style.color = "rgb(0,0,0)"
+        }
+        localStorage.setItem("theme", "light");
+    }
+}
+
 
 var intervalo = setInterval(() => {
+    //If responsável por mutar e desmutar a música
+    if(sound == 0){
+        audio.play();
+        audio.volume = 0.25;
+        localStorage.setItem("music", "on");
+    }    
+    else{
+        audio.volume = 0;
+        localStorage.setItem("music", "off");
+    }
+    //If responsável por acionar o barulho de buzina
     if(horn == 69){
         audio3.play();
     }
-    if (Math.abs(ang) == 19.83999999999993){
-        ang = 0;      
-    }
+    //If reponsável por fazer o carro andar
     if (movement == 38) {
-        x += 3 * Math.cos(ang / Math.PI);
-        y += 3 * Math.sin(ang / Math.PI);
+        if(movementDrift == 32){
+            if(turnLeft != 0 || turnRight != 0){
+                x += 3 * Math.cos(ang / Math.PI);
+                y += 3 * Math.sin(ang / Math.PI);
+            }
+        }
+        else{
+            x += 3 * Math.cos(ang / Math.PI);
+            y += 3 * Math.sin(ang / Math.PI);
+        }
     }
     if (movement == 40) {
         x -= 2 * Math.cos(ang / Math.PI);
         y -= 2 * Math.sin(ang / Math.PI);
     }
-
+    //If responsável por fazer e desfazer o drift para a direita
     if (turnRight == 39){
-        if (movementDrift == 0 && drift > 0) {
-            drift -= 0.02 
+        if (movementDrift == 0 && rightDrift > 0) {
+            rightDrift -= 0.02 
+            drift = rightDrift
+            ang += 0.07
         }
-        if (movementDrift == 32 && drift < 1.0) {
-            drift += 0.02
+        if (movementDrift == 32 && rightDrift < 1.0) {
+            rightDrift += 0.02
+            drift = rightDrift
+            ang -= 0.07
         }
     }
+    //If responsável por fazer e desfazer o drift para a esquerda
     if (turnLeft == 37){
-        if (movementDrift == 0 && drift < 0) {
-            drift += 0.02 
+        if (movementDrift == 0 && leftDrift < 0) {
+            leftDrift += 0.02 
+            drift = leftDrift
+            ang -= 0.07
         }
-        if (movementDrift == 32 && drift > -1.0) {
-            drift -= 0.02
+        if (movementDrift == 32 && leftDrift > -1.0) {
+            leftDrift -= 0.02
+            drift = leftDrift
+            ang += 0.07
         }
     }
-    if (turnLeft == 0 && drift != 0){
+    //If responsável por arrumar o angulo do carro em relação ao drift
+    if (turnLeft == 0 && leftDrift != 0){
         if (movementDrift == 0 && drift < 0) {
-            drift += 0.02 
+            ang -= 0.07
+            leftDrift += 0.02
+            drift = leftDrift
         }
     }
-    if (turnRight == 0 && drift != 0){
-        if (movementDrift == 0 && drift > 0) {
-            drift -= 0.02 
+    if (turnRight == 0 && rightDrift != 0){
+        if (movementDrift == 0 && rightDrift > 0) {
+            ang += 0.07
+            rightDrift -= 0.02 
+            drift = rightDrift
         }
     }
     
 }, 10);
 
+//Thread responsável por virar para a esquerda e para a direita quando o carro andar
 var intervalo2 = setInterval(() => {
     if (turnRight == 39 && movement != 0) {
         ang += 0.08;
@@ -249,6 +357,7 @@ var intervalo2 = setInterval(() => {
     }
 }, 10);
 
+//Reset de ações quando der o KeyUp
 document.onkeyup = function (evt) {
     if (evt.keyCode == 38 || evt.keyCode == 40) {
         movement = 0;
@@ -263,6 +372,8 @@ document.onkeyup = function (evt) {
         movementDrift = 0;
     }
     if (evt.keyCode == 69){
+        audio3.pause();
+        audio3.currentTime = 0;
         horn = 0;
     }
 };
