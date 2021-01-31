@@ -250,6 +250,9 @@ document.onkeydown = function (evt) {
             x = 200
             y = 100
             ang = 0
+            drift = 0;
+            leftDrift = 0;
+            rightDrift = 0;
             break;
     }
 };

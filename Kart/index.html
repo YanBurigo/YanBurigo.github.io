@@ -1,37 +1,18 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="shortcut icon" href="Assets/Images/FavIcon.PNG">
+        <link rel="stylesheet" type="text/css" href="Styles/style.css" media="screen" />
     </head>
-    <style>
-        .titulo{
-            color: red; 
-            font: bolder; 
-            font-style: italic; 
-            font-size: 50px; 
-            margin-left: 180px; 
-            margin-top: -15px; 
-            margin-bottom: -5px;
-        }
-        p{
-            margin-bottom: 5px;
-            margin-top: 5px;
-            margin-right: 60px;
-        }
-        h2{
-            margin: 2px;
-        }
-    </style>
     <body id="body">
         <h1 class="titulo">Vilson Kart</h1>
-        <audio id="music" src="Tokyo Drift.mp3"></audio>
-        <audio id="drift" src="drift.mp3"></audio>
-        <audio id="horn" src="Buzina.mp3"></audio>
-        <style>
-            #tela{
-                background-color: black;
-            }
-        </style>
+
+        <audio id="music" src="Assets/Sounds/Tokyo Drift.mp3"></audio>
+        <audio id="drift" src="Assets/Sounds/drift.mp3"></audio>
+        <audio id="horn" src="Assets/Sounds/Buzina.mp3"></audio>
+
         <canvas id="tela" width="640" height="480"></canvas>
+
         <h2 class="text">Controles:</h2>
         <div style="float: left;">
             <p class="text">Andar para frente: ↑</p>
@@ -49,6 +30,7 @@
             <p class="text">Respawn: R</p>
             <p class="text">Trocar tema: T</p>
         </div>
-        <script src="script.js"></script>
+        
+        <script src="Scripts/script.js"></script>
     </body>
 </html>
