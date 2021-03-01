@@ -1,0 +1,38 @@
+[
+    {
+        "professor" : "Wilson Castello Branco Neto",
+        "indisponivel" : ["Quinta"]
+    },
+    {
+        "professor" : "Robson Costa",
+        "indisponivel" : ["Quarta"]
+    },
+    {
+        "professor" : "Alexandre Perin de Souza",
+        "indisponivel" : ["Terça"]
+    },
+    {
+        "professor" : "Vilma Gisele Karsburg",
+        "indisponivel" : ["Quarta", "Sexta"]
+    },
+    {
+        "professor" : "André Salvaro Furtado",
+        "indisponivel" : ["Sexta"]
+    },
+    {
+        "professor" : "Leonardo Bravo Estácio",
+        "indisponivel" : ["Quinta", "Sexta"]
+    },
+    {
+        "professor" : "Fernando Weber Albiero",
+        "indisponivel" : ["Terça"]
+    },
+    {
+        "professor" : "José Dario Pintor da Silva",
+        "indisponivel" : ["Quinta", "Sexta"]
+    },
+    {
+        "professor" : "Carlos Andres Ferrero",
+        "indisponivel" : ["Segunda"]
+    }
+]

@@ -1,0 +1,16 @@
+.escolhas{
+    margin: 10px;
+}
+
+#box{
+    float: left;
+    margin-right: 20px;
+}
+
+.results{
+    margin-top: 25px;
+}
+
+.main{
+    padding: 20px;
+}
