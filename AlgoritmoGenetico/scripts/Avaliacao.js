@@ -78,17 +78,12 @@ function avaliacao(x){
         
     }
 
-    avaliacaoAcumulada(pontuacao,0);
+    avaliacaoAcumulada(pontuacao);
     return pontuacao;
 }
 
-function avaliacaoAcumulada(pontuacao, id){
-    if(id==-1){
-        pontuacaoTotal = 0;
-    }
-    else{
-        pontuacaoTotal = pontuacaoTotal + pontuacao;
-    }
+function avaliacaoAcumulada(pontuacao){
+    pontuacaoTotal = pontuacaoTotal + pontuacao;
 }
 
 function getMelhorIndividuo(){
