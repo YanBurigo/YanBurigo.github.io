@@ -25,5 +25,15 @@ fetch("data/disponibilidade.json")
 .then(dis => disponibilidade = dis);
 
 function main(populacao, valueMut){
+   pontuacaoTotal = 0;
+   melhoresIndividuos = [];
+   elite = [];
+   pontuacoesMelhores = [];
+   cont = 0;
+   elitismo = 0;
+   primeiroFilho = [];
+   segundoFilho = [];
+   cont2 = 0;
+   geracoes = 0;
    return AlgoritmoGenetico(populacao, valueMut) 
 }
