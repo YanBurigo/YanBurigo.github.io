@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>The Nightmare</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body id="element">
+    <audio id="playerwalking" src="Assets/Sounds/playerwalking.mp3"></audio>
+    <audio id="playerruning" src="Assets/Sounds/playerruning.mp3"></audio>
+    <audio id="ambiencemain" src="Assets/Sounds/ambiencemain.mp3"></audio>
+    <audio id="ambiencesecond" src="Assets/Sounds/ambiencesecond.mp3"></audio>
+    <audio id="win" src="Assets/Sounds/win.mp3"></audio>
+    <audio id="nightmarewalking1" src="Assets/Sounds/nightmarewalking1.mp3"></audio>
+    <audio id="nightmarewalking2" src="Assets/Sounds/nightmarewalking2.mp3"></audio>
+    <audio id="nightmarewalking3" src="Assets/Sounds/nightmarewalking3.mp3"></audio>
+    <audio id="nightmarewalking4" src="Assets/Sounds/nightmarewalking4.mp3"></audio>
+    <audio id="nightmarewalking5" src="Assets/Sounds/nightmarewalking5.mp3"></audio>
+    <audio id="keyMonster" src="Assets/Sounds/keyMonster.mp3"></audio>
+    <audio id="jumpscareSound" src="Assets/Sounds/jumpscareSound.mp3"></audio>
+    <audio id="goldenJumpscareSound" src="Assets/Sounds/goldenJumpscare.mp3"></audio>
+    
+    <script>
+        var start = false;
+        function play(){
+            var startScreen = document.getElementById("MainScreen");
+            startScreen.remove(startScreen);
+            start = true;
+            canvas.requestPointerLock()
+        }
+    </script>
+
+    <div id="MainScreen">
+        <img style="position: fixed;" src="Assets/Images/Screen/capa.png" width="100%" height="100%">
+        <div style="position: absolute; width: 100%; height: 100%; color: red; text-align: center; padding-top: 55vh; font-size: 40px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            <p style="background-color: rgba(22, 22, 22, 0.6); padding-right: 5%;" onclick="play()">PLAY</p>
+        </div>
+    </div>
+    <div id="winScreen"></div>
+    
+    <div id="jumpscare"></div>
+    <script src="Src/Scripts/ThreeJS/Three.min.js"></script>
+    <script src="Src/Scripts/Tools/Configs.js"></script>
+    <script src="Src/Scripts/Player/OrbitControls.js"></script>
+    <script src="Src/Scripts/Map/Sound.js"></script>
+    <script src="Src/Scripts/ThreeJS/Script.js"></script>
+    <script src="Src/Scripts/Player/PlayerCollision.js"></script>
+    <script src="Src/Scripts/Map/Collision.js"></script>
+    <script src="Src/Scripts/Player/FirstPersonControls.js"></script>
+    <script src="Src/Scripts/Player/PointerLock.js"></script>
+    <script src="Src/Scripts/Monster/VertexData.js"></script>
+    <script src="Src/Scripts/Monster/VertexCall.js"></script>
+    <script src="Src/Scripts/Monster/Pathfinder.js"></script>
+
+    <script src="Src/Objects/Internal/fumaca.js" type="module"></script>
+    <script src="Src/Objects/Internal/skybox.js"></script>
+    <script src="Src/Objects/Internal/luzAmbiente.js"></script>
+    <script src="Src/Objects/Internal/pontoLuz.js"></script>
+    <script src="Src/Objects/Internal/plano.js"></script>
+    <script src="Src/Objects/Internal/cubo.js"></script>
+    <script src="Src/Objects/Internal/labirinto.js"></script>
+    <script src="Src/Objects/Internal/lua.js"></script>
+    <script src="Src/Objects/Internal/spawn.js"></script>
+    <script src="Src/Objects/Internal/end.js"></script>
+
+    <script src="Src/Scripts/Map/ObjectLoader.js" type="module"></script>
+
+</body>
+
+</html>
