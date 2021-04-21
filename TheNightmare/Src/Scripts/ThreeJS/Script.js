@@ -38,12 +38,11 @@ function desenhar() {
         PlayerHitbox.position.set(camera.position.x, camera.position.y, camera.position.z);  //necessário para sincronizar a hitbox do Player com a camera
         if(checkCollision(PlayerHitbox, MonsterHitbox)){
             var jumpscare = document.getElementById("jumpscare")
-            jumpscareSound.play();
             jumpscare.innerHTML = '<img src="Assets/Images/Jumpscare/bonnieJumpscare.gif" id="jumpscare" style="position:absolute; width:100%; height:100%"/>'
+            jumpscareSound.play();
             jumpscareCont ++;
-            setTimeout(() => {
-                restart()
-            }, 2000);
+            
+            setTimeout(mostrarGameOver,4000);
         }
         else if(jumpscareCont > 0){
             var jumpscare = document.getElementById("jumpscare")
@@ -56,10 +55,9 @@ function desenhar() {
                 var random = getRandomInt(0, 1000);
                 if(random <= 1){
                     var jumpscare = document.getElementById("jumpscare")
-                    jumpscareSound.play();
                     jumpscare.innerHTML = '<img src="Assets/Images/Jumpscare/bonnieJumpscare.gif" id="jumpscare" style="position:absolute; width:100%; height:100%"/>'
+                    jumpscareSound.play();
                     setTimeout(() => {
-                        restart()
                         jumpscare.innerHTML = '<div id="jumpscare" />'
                     }, 2000);
                 }
@@ -87,6 +85,12 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function mostrarGameOver(){
+    camera.position.set(0,0,0)      //necessário para o jumpscare não ficar em loop
+    var gameOverScreen = document.getElementById("GameOverScreen");
+    gameOverScreen.style.display = "inline";
 }
 
 function restart(){

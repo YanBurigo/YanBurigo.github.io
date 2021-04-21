@@ -1,5 +1,6 @@
 const playerwalking = document.getElementById("playerwalking");
 const playerruning = document.getElementById("playerruning");
+const menusound = document.getElementById("menusound");
 
 const ambiencemain = document.getElementById("ambiencemain");
 const ambiencesecond = document.getElementById("ambiencesecond");
@@ -19,7 +20,7 @@ var win = setInterval(() => {
     if ((camera.position.x >= -2 && camera.position.x <= 3) && camera.position.z <= -58.0 && start && victoryCont == 0){
         winSound.play();
         var victory = document.getElementById("winScreen")
-        victory.innerHTML = '<div id="winScreen" style="text-align: center; position: fixed; color: green; width: 100%; height: 100%; padding-top: 30vh; font-size: 40px; font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; font-style: italic; background-color: rgba(22, 22, 22, 1);">Victory<br><br><p onclick="restart()">Play Again?</p></div>'
+        victory.innerHTML = '<div id="winScreen" style="text-align: center; position: fixed; color: green; width: 100%; height: 100%; padding-top: 30vh; font-size: 40px; font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; font-style: italic; background-color: rgba(22, 22, 22, 1);">Victory<br><br><p style="cursor: pointer;" onclick="restart()">Play Again?</p></div>'
         victoryCont ++;
         document.exitPointerLock();
     }
