@@ -34,6 +34,7 @@
     <script>
         var start = false;
         function play(){
+            preload();
             startMonster();
             menusound.pause();
             var startScreen = document.getElementById("MainScreen");
@@ -192,7 +193,8 @@
     <script src="Src/Objects/Internal/end.js"></script>
 
     <script src="Src/Scripts/Map/ObjectLoader.js" type="module"></script>
-
+    <div id="preload"></div>
+    <script src="Src/Scripts/Monster/Preload.js"></script>
 </body>
 
 </html>
