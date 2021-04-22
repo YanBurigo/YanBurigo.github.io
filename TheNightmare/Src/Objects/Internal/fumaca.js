@@ -283,5 +283,10 @@ class ParticleSystemDemo {
 let _APP = null;
 
 window.addEventListener('DOMContentLoaded', () => {
-    _APP = new ParticleSystemDemo();
+  var loadFumace = setInterval(() => {
+    if(smokeEnable){
+      _APP = new ParticleSystemDemo();
+      clearInterval(loadFumace);
+    }
+  }, 2000);
 });

@@ -93,3 +93,13 @@ function mostrarGameOver(){
 function restart(){
     document.location.reload(true);
 }
+
+window.addEventListener('resize', () => {
+    OnWindowResize();
+}, false);
+
+function OnWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    render.setSize(window.innerWidth, window.innerHeight);
+}
