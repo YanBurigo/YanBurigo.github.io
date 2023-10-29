@@ -14,7 +14,7 @@ function initTheme() {
   var currentyTheme = localStorage.getItem("darkSwitch");
 
   if(currentyTheme === null){
-    localStorage.setItem("darkSwitch", "light")
+    localStorage.setItem("darkSwitch", "dark")
   }
   else{
     isDarkTheme = currentyTheme !== null && currentyTheme === "dark";
